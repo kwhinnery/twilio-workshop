@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Click To Call</title>
+</head>
+<body>
+	<h1>Click To Call</h1>
+	<button>Click me to talk to sales</button>
+	
+	<!-- Scripting Magic -->
+	<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="//static.twilio.com/libs/twiliojs/1.1/twilio.min.js"></script>
+	
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+			Twilio.Device.setup('<%= token %>');
+			
+			//Handle button click
+			$('button').on('click', function(e) {
+				Twilio.Device.connect();
+			});
+		});
+	</script>
+</body>
+</html>

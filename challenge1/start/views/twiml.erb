@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+	<% if params[:Digits] %>
+		<% if params[:Digits] == '1' %>
+		<!-- 
+			TODO:
+			Tell the user they are connecting to sales, then forward to another number 
+		-->
+		<% else %>
+		<!-- 
+			TODO:
+			Tell the user they are connecting to services, then forward to another number 
+		-->
+		<% end %>
+	<% else %>
+	<!-- 
+		TODO:
+		What TwiML verb asks the user to enter digits?  Change "CHANGEME" to this verb.
+	-->
+	<CHANGEME>
+		<Say>Thanks for calling Acme LLC!</Say>
+		<!-- 
+			TODO:
+			How can you make Twilio use a female voice to <Say> the following text?  
+			Use the docs, Luke!
+		-->
+		<Say>
+			For the Sales department, press 1.
+			For service, press 2.
+		</Say>
+	</CHANGEME>
+	<% end %>
+</Response>

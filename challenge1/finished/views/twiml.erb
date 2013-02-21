@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+	<% if params[:Digits] %>
+		<% if params[:Digits] == '1' %>
+		<Say>Now connecting to sales.</Say>
+		<Dial>16512080532</Dial>
+		<% else %>
+		<Say>Now connecting to services.</Say>
+		<Dial>16512080532</Dial>
+		<% end %>
+	<% else %>
+	<Gather>
+		<Say>Thanks for calling Acme LLC!</Say>
+		<Say voice="woman">
+			For the Sales department, press 1.
+			For service, press 2.
+		</Say>
+	</Gather>
+	<% end %>
+</Response>
