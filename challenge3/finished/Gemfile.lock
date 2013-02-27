@@ -22,5 +22,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  builder
   sinatra
   twilio-ruby
