@@ -26,15 +26,14 @@
 		<![endif]-->
 	</head>
 
-	<body>
-
+	<body>		
 		<div class="reveal">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
 				<section>
-                    <img src="img/twilio.png" alt="Twilio: Cloud Communications"/>
+					<img src="img/twilio.png" alt="Twilio: Cloud Communications"/>
 				</section>
 
                 <section>
@@ -632,9 +631,22 @@ Twilio.Device.connect();
 			</div>
 
 		</div>
+		
+		<div id="menu">
+			<div id="menu_toggle">
+				&rarr;
+			</div>
+			<div id="menu_contents">
+				<a href="#/">Start</a> |
+				<a href="#/9">Challenge 1</a> |
+				<a href="#/22">Challenge 2</a> |
+				<a href="#/32">Challenge 3</a>
+			</div>
+		</div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
+		<script src="lib/js/jquery.js"></script>
 
 		<script>
 
@@ -659,6 +671,18 @@ Twilio.Device.connect();
 					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
+			});
+			
+			// Little slidey menu
+			var menuShown;
+			$(function() {
+				$('#menu_toggle').on('click', function() {
+					$(this).html((menuShown) ? '&rarr;' : '&larr;');
+					$('#menu_contents').animate({
+						left:(menuShown) ? '-1000px' : '35px'
+					});
+					menuShown = !menuShown;
+				});
 			});
 
 		</script>
