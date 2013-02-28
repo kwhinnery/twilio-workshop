@@ -1,0 +1,125 @@
+/**
+ * Twilio theme for reveal.js.
+ * 
+ * Copyright (C) 2013 Twilio Inc.
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+
+// ---------------------------------------------
+
+// Include theme-specific fonts
+@font-face {
+  font-family: 'Gotham Black';
+  src: url('../../lib/font/GothamBlack.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham Ultra';
+  src: url('../../lib/font/GothamUltra.otf') format('opentype');
+}
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: Helvetica, sans-serif;
+$mainColor: #000;
+$headingFont: 'Gotham Ultra', Impact, sans-serif;
+$headingTextTransform: none;
+$headingLineHeight: 1em;
+$headingColor: #232323;
+$headingTextShadow: none;
+$backgroundColor: #cdcdcd;
+$linkColor: #ff0000;
+$linkColorHover: lighten($linkColor, 20%);
+$selectionBackgroundColor: #ff0000;
+$heading1color:#ff0000;
+$heading1TextShadow: none;
+
+// Background generator
+@mixin bodyBackground() {
+  @include radial-gradient(#fff, #fff);
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// Preso specific styles
+li {
+  margin-top:10px !important;
+}
+
+td {
+  padding:10px !important;
+}
+
+.things td {
+  width:33%;
+}
+
+.t {
+  color:#ff0000 !important;
+  font-weight: bold;
+  font-family: $headingFont !important;
+}
+
+.pull-right {
+  float: right;
+  max-width: 65%;
+}
+
+.pull-left {
+  float: left;
+  max-width: 30%;
+}
+
+.subtitle {
+  margin-top:400px !important;
+}
+
+.owl .reveal .state-background {
+  background: url(../../img/owl.jpg);
+  background-size: cover;
+}
+
+.owl2 .reveal .state-background {
+  background: url(../../img/owl2.jpg);
+  background-size: cover;
+}
+
+.segway .reveal .state-background {
+  background: url(../../img/segway.jpg);
+  background-size: cover;
+}
+
+.owl *, .owl2 * {
+  color:#fff;
+  word-wrap: normal;
+}
+
+.segway section, .owl section, .owl2 section {
+  padding:20px !important;
+  background-color: #000;
+  opacity:0.8 !important;
+}
+
+//Reveal overrides
+.reveal section img {
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+.reveal a:hover img {
+  background: none;
+  border-color: none;
+  box-shadow: none;
+}
+
