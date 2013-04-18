@@ -1,405 +1,96 @@
-# reveal.js [![Build Status](https://travis-ci.org/hakimel/reveal.js.png?branch=master)](https://travis-ci.org/hakimel/reveal.js)
+# Twilio Workshop: Presenter Edition
 
-A framework for easily creating beautiful presentations using HTML. [Check out the live demo](http://lab.hakim.se/reveal-js/).
+So you want to give a Twilio workshop?  Awesome!  I hope these materials can help.  Team Twilio wants your workshop to be extremely successful - if you have any questions or concerns, feel free to reach out to me (Kevin - kwhinnery at twilio dot com).  I'll be happy to help get your event off the ground :)
 
-reveal.js comes with a broad range of features including [nested slides](https://github.com/hakimel/reveal.js#markup), [markdown contents](https://github.com/hakimel/reveal.js#markdown), [PDF export](https://github.com/hakimel/reveal.js#pdf-export), [speaker notes](https://github.com/hakimel/reveal.js#speaker-notes) and a [JavaScript API](https://github.com/hakimel/reveal.js#api). It's best viewed in a browser with support for CSS 3D transforms but [fallbacks](https://github.com/hakimel/reveal.js/wiki/Browser-Support) are available to make sure your presentation can still be viewed elsewhere.
+The Twilio workshop has four main educational objectives:
 
+* Developers should be understand how communications APIs could be employed for their unique business/use case
+* Developers should successfully write code that uses the Twilio APIs independently
+* Developers should be exposed to the support resources, logs, helper libraries, and third party tools available to help them
+* Developers should have fun hacking and making phones ring
 
-#### More reading in the Wiki:
-- [Changelog](https://github.com/hakimel/reveal.js/wiki/Changelog): Up-to-date version history.
-- [Examples](https://github.com/hakimel/reveal.js/wiki/Example-Presentations): Presentations created with reveal.js, add your own!
-- [Browser Support](https://github.com/hakimel/reveal.js/wiki/Browser-Support): Explanation of browser support and fallbacks.
+The workshop is designed to run over a half day, approximately three hour session.  This workshop is not intended to "certify" a developer on Twilio, but rather to give the developer a solid grounding for further exploration.
 
-## rvl.io
+## Preparing for your workshop
+There's a lot of ground work that goes in to running a successful workshop.  This guide is intended to help call out some of the major deliverables, and help you put together a great experience.
 
-Slides are written using HTML or markdown but there's also an online editor for those of you who prefer a more traditional user interface. Give it a try at [www.rvl.io](http://www.rvl.io).
+### Workshop registration and attendance
+I would suggest running registration for your event through a software platform built for one-off events, such as Eventbrite.  You should start promoting your event about a month prior to running it if you have enough lead time.  I usually cap registration at 30 people - for me, 30 is the absolute maximum number of attendees one instructor can handle while giving enough attention to individual developers.
 
+Eventbrite has the ability to create a waitlist - I would reccommend making use of this, as spots at these workshops have tended to fill up.  In the days before the event, it is common to get a handful of cancellations.  These seast should be redistributed to members of the wait list.  Even on top of that, it is common to have a handful of people not show up for the workshop (if you're running your workshop for free).  For a "sold out" class of 30, it is reasonable to expect ~25 attendees.
 
-## Instructions
+### Finding a venue
+Your presentation venue needs to have a few core features:
 
-### Markup
+* Solid wifi network
+* Table space for up to 30 people with laptops, phones, and other paraphenalia
+* Power outlets (3 hours might be more juice than folks have in their batteries)
+* Nearby parking or convenient transit
 
-Markup heirarchy needs to be ``<div class="reveal"> <div class="slides"> <section>`` where the ``<section>`` represents one slide and can be repeated indefinitely. If you place multiple ``<section>``'s inside of another ``<section>`` they will be shown as vertical slides. The first of the vertical slides is the "root" of the others (at the top), and it will be included in the horizontal sequence. For example:
+Co-working spaces make excellent workshop venues.  They are typically centrally located, have "business quality" wifi, and professional presentation spaces (sometimes even dedicated classrooms).  If you can, attempt to negotiate free usage of the space in exchange for plugging the co-working space to your attendees, and in your pre-event mailings.  The workshop usually attracts several freelancers and small businesses who might make use of a co-working space themselves.
 
-```html
-<div class="reveal">
-	<div class="slides">
-		<section>Single Horizontal Slide</section>
-		<section>
-			<section>Vertical Slide 1</section>
-			<section>Vertical Slide 2</section>
-		</section>
-	</div>
-</div>
-```
+### Preparing Attendees
 
-### Markdown
+The way this workshop is structured, attendees will need to have a few bits of software set up prior to arrival.  This is an example welcome letter you could send to attendees:
 
-It's possible to write your slides using Markdown. To enable Markdown, add the ```data-markdown``` attribute to your ```<section>``` elements and wrap the contents in a ```<script type="text/template">``` like the example below.
+"""
+Hi everybody!
 
-This is based on [data-markdown](https://gist.github.com/1343518) from [Paul Irish](https://github.com/paulirish) which in turn uses [showdown](https://github.com/coreyti/showdown/). This is sensitive to indentation (avoid mixing tabs and spaces) and line breaks (avoid consecutive breaks).
+Thanks for registering for the upcoming Twilio workshop at Joule this Friday, 4/5.  I'm looking forward to meeting you all (or meeting you again, in some cases)!  Please excuse the length of the e-mail to follow, but I'd like to share a few instructions with you to ensure we can hit the ground running when the workshop begins.
 
-```html
-<section data-markdown>
-	<script type="text/template">
-		## Page title
+Notes on Class Structure
 
-		A paragraph with some text and a [link](http://hakim.se).
-	</script>
-</section>
-```
+For the purposes of teaching the core concepts of the Twilio API to a class of students with varied backgrounds, we have chosen to teach "lab sessions" in a single programming language, with the simplest possible web framework.  The language will be Ruby, and the web framework we will use is Sinatra.
 
-### Configuration
+If you've never used Ruby or Sinatra before, fear not!  The exercises are structured to get you started very quickly, with "starter code" that contains a lot of the boilerplate for handling HTTP requests and rendering HTML (or XML) in response.
 
-At the end of your page you need to initialize reveal by running the following code. Note that all config values are optional and will default as specified below.
+However, if you are confident in your ability to *very quickly* create simple web applications on your local machines that render HTML and XML in your framework of choice (node.js, PHP, ruby, python, Java, .NET), you can use those too. Please note that if you use these frameworks/platforms, you will need to write all code from scratch in every exercise.
 
-```javascript
-Reveal.initialize({
+If you choose to use a platform other than Ruby, please make sure to have the Twilio helper library for your platform downloaded (maybe even run through a quick start tutorial) prior to class:
 
-	// Display controls in the bottom right corner
-	controls: true,
+http://www.twilio.com/docs/libraries
 
-	// Display a presentation progress bar
-	progress: true,
+Also, the exercises in class will require that our applications be made available on the public internet.  A great tool to use for this purpose is Forward.  Forward temporarily exposes local ports (for example, Sinatra serves local web applications on port 4567) on publicly accessible URLs on the internet.  I will provide you with login credentials to use this service free of charge in class.  Unless you have a hosting setup you prefer to use, you should plan on installing Forward prior to class (see instructions below).
 
-	// Push each slide change to the browser history
-	history: false,
+To actually write code in class, any text editor will do.  You probably have your favorite installed already, but across all platforms, a lot of people seem to really like Sublime Text 2.
 
-	// Enable keyboard shortcuts for navigation
-	keyboard: true,
+Install and Setup Instructions
 
-	// Enable the slide overview mode
-	overview: true,
+To install Forward and Sinatra for use during the workshop, you will first need to install Ruby and RubyGems.  If you're running on a Mac, these items are likely already installed.  If you don't have these items installed, Cloud Foundry has a really good set of install instructions:
 
-	// Vertical centering of slides
-	center: true,
+http://docs.cloudfoundry.com/frameworks/ruby/installing-ruby.html
 
-	// Loop the presentation
-	loop: false,
+Next, you will need to install the Sintra, Twilio and Forward Ruby gems. In a terminal window or command prompt, issue the following commands.  You may need to use "sudo" depending on your system configuration:
 
-	// Change the presentation direction to be RTL
-	rtl: false,
+[sudo] gem install sinatra
+[sudo] gem install twilio-ruby
+[sudo] gem install forward
 
-	// Number of milliseconds between automatically proceeding to the 
-	// next slide, disabled when set to 0, this value can be overwritten
-	// by using a data-autoslide attribute on your slides
-	autoSlide: 0,
+This should be all the software you need prior to arriving in class.  To ensure you are able to write a Sinatra application and serve it to the internet, create a file called "hello.rb" and place the following code inside it:
 
-	// Enable slide navigation via mouse wheel
-	mouseWheel: false,
+https://gist.github.com/kwhinnery/5285329
 
-	// Apply a 3D roll to links on hover
-	rollingLinks: true,
+And run this file using "ruby hello.rb" in ther terminal/command window.  This should launch "hello.rb" as a Sinatra web application, running on port 4567.
 
-	// Transition style
-	transition: 'default' // default/cube/page/concave/zoom/linear/fade/none
+In another terminal or command window, enter the command "forward 4567".  This will use the Forward Ruby gem to expose port 4567 to the internet on a URL that looks something like https://qrp-1337.fwd.wf.
 
-});
-```
+The first time you run this command, you will be prompted for a username and password.  Use the following credentials:
 
-Note that the new default vertical centering option will break compatibility with slides that were using transitions with backgrounds (`cube` and `page`). To restore the previous behavior, set `center` to `false`.
+kwhinnery+workshop@foo.com
+foopassword
 
+Visit the URL that is output in the terminal to confirm that you see our welcome message.  If you have any problems with this configuration, please send me a note for help at kevin.whinnery@foo.com.
 
-### Presentation Size
+Thanks for Reading! 
 
-All presentations have a normal size, that is the resolution at which they are authored. The framework will automatically scale presentations uniformly based on this size to ensure that everything fits on any given display or viewport. 
+Thanks for taking a few moments to prepare for the Twilio workshop!  Can't wait to see you there.  If you have any questions in the meantime, reply to this e-mail and I will be happy to assist you.
+"""
 
-See below for a list of configuration options related to sizing, including default values:
+## After Your Workshop
 
-```javascript
-Reveal.initialize({
-	
-	...
-	
-	// The "normal" size of the presentation, aspect ratio will be preserved
-	// when the presentation is scaled to fit different resolutions. Can be
-	// specified using percentage units.
-	width: 960,
-	height: 700,
-	
-	// Factor of the display size that should remain empty around the content
-	margin: 0.1,
-	
-	// Bounds for smallest/largest possible scale to apply to content
-	minScale: 0.2,
-	maxScale: 1.0
-	
-});
-```
+Collecting feedback from attendees is a critical element of the workshop.  After conducting your workshop, send out a Google Form survey to your attendees via e-mail, asking for their feedback.  Read and incorporate any feedback as necessary.  The format the survey takes is a brief 4 question survey:
 
-
-### Dependencies
-
-Reveal.js doesn't _rely_ on any third party scripts to work but a few optional libraries are included by default. These libraries are loaded as dependencies in the order they appear, for example:
-
-```javascript
-Reveal.initialize({
-	dependencies: [
-		// Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
-		{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-
-		// Interpret Markdown in <section> elements
-		{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-
-		// Syntax highlight for <code> elements
-		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-
-		// Zoom in and out with Alt+click
-		{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-
-		// Speaker notes
-		{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-
-		// Remote control your reveal.js presentation using a touch device
-		{ src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-	]
-});
-```
-
-You can add your own extensions using the same syntax. The following properties are available for each dependency object:
-- **src**: Path to the script to load
-- **async**: [optional] Flags if the script should load after reveal.js has started, defaults to false
-- **callback**: [optional] Function to execute when the script has loaded
-- **condition**: [optional] Function which must return true for the script to be loaded
-
-
-### API
-
-The Reveal class provides a minimal JavaScript API for controlling navigation and reading state:
-
-```javascript
-// Navigation
-Reveal.slide( indexh, indexv, indexf );
-Reveal.left();
-Reveal.right();
-Reveal.up();
-Reveal.down();
-Reveal.prev();
-Reveal.next();
-Reveal.prevFragment();
-Reveal.nextFragment();
-Reveal.toggleOverview();
-
-// Retrieves the previous and current slide elements
-Reveal.getPreviousSlide();
-Reveal.getCurrentSlide();
-
-Reveal.getIndices(); // { h: 0, v: 0 } }
-```
-
-### States
-
-If you set ``data-state="somestate"`` on a slide ``<section>``, "somestate" will be applied as a class on the document element when that slide is opened. This allows you to apply broad style changes to the page based on the active slide.
-
-Furthermore you can also listen to these changes in state via JavaScript:
-
-```javascript
-Reveal.addEventListener( 'somestate', function() {
-	// TODO: Sprinkle magic
-}, false );
-```
-
-### Ready event
-
-The 'ready' event is fired when reveal.js has loaded all (synchronous) dependencies and is ready to start navigating.
-
-```javascript
-Reveal.addEventListener( 'ready', function( event ) {
-	// event.currentSlide, event.indexh, event.indexv
-} );
-```
-
-### Slide change event
-
-An 'slidechanged' event is fired each time the slide is changed (regardless of state). The event object holds the index values of the current slide as well as a reference to the previous and current slide HTML nodes.
-
-Some libraries, like MathJax (see [#226](https://github.com/hakimel/reveal.js/issues/226#issuecomment-10261609)), get confused by the transforms and display states of slides. Often times, this can be fixed by calling their update or render function from this callback.
-
-```javascript
-Reveal.addEventListener( 'slidechanged', function( event ) {
-	// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-} );
-```
-
-### Internal links
-
-It's easy to link between slides. The first example below targets the index of another slide whereas the second targets a slide with an ID attribute (```<section id="some-slide">```):
-
-```html
-<a href="#/2/2">Link</a>
-<a href="#/some-slide">Link</a>
-```
-
-You can also add relative navigation links, similar to the built in reveal.js controls, by appending one of the following classes on any element. Note that each element is automatically given an ```enabled``` class when it's a valid navigation route based on the current slide.
-
-```html
-<a href="#" class="navigate-left">
-<a href="#" class="navigate-right">
-<a href="#" class="navigate-up">
-<a href="#" class="navigate-down">
-<a href="#" class="navigate-prev"> <!-- Previous vertical or horizontal slide -->
-<a href="#" class="navigate-next"> <!-- Next vertical or horizontal slide -->
-```
-
-
-### Fragments
-Fragments are used to highlight individual elements on a slide. Every elmement with the class ```fragment``` will be stepped through before moving on to the next slide. Here's an example: http://lab.hakim.se/reveal-js/#/16
-
-The default fragment style is to start out invisible and fade in. This style can be changed by appending a different class to the fragment:
-
-```html
-<section>
-	<p class="fragment grow">grow</p>
-	<p class="fragment shrink">shrink</p>
-	<p class="fragment roll-in">roll-in</p>
-	<p class="fragment fade-out">fade-out</p>
-	<p class="fragment highlight-red">highlight-red</p>
-	<p class="fragment highlight-green">highlight-green</p>
-	<p class="fragment highlight-blue">highlight-blue</p>
-</section>
-```
-
-Multiple fragments can be applied to the same element sequentially by wrapping it, this will fade in the text on the first step and fade it back out on the second.
-
-```html
-<section>
-	<span class="fragment fade-in">
-		<span class="fragment fade-out">I'll fade in, then out</span>
-	</span>
-</section>
-```
-
-### Fragment events
-
-When a slide fragment is either shown or hidden reveal.js will dispatch an event.
-
-```javascript
-Reveal.addEventListener( 'fragmentshown', function( event ) {
-	// event.fragment = the fragment DOM element
-} );
-Reveal.addEventListener( 'fragmenthidden', function( event ) {
-	// event.fragment = the fragment DOM element
-} );
-```
-
-### Code syntax higlighting
-
-By default, Reveal is configured with [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for code syntax highlighting. Below is an example with clojure code that will be syntax highlighted:
-
-```html
-<section>
-	<pre><code>
-(def lazy-fib
-  (concat
-   [0 1]
-   ((fn rfib [a b]
-        (lazy-cons (+ a b) (rfib b (+ a b)))) 0 1)))
-	</code></pre>
-</section>
-```
-
-
-### Overview mode
-
-Press "Esc" key to toggle the overview mode on and off. While you're in this mode, you can still navigate between slides,
-as if you were at 1,000 feet above your presentation. The overview mode comes with a few API hooks:
-
-```javascript
-Reveal.addEventListener( 'overviewshown', function( event ) { /* ... */ } );
-Reveal.addEventListener( 'overviewhidden', function( event ) { /* ... */ } );
-
-// Toggle the overview mode programmatically
-Reveal.toggleOverview();
-```
-
-### Fullscreen mode
-Just press »F« on your keyboard to show your presentation in fullscreen mode. Press the »ESC« key to exit fullscreen mode.
-
-
-## PDF Export
-
-Presentations can be exported to PDF via a special print stylesheet. This feature requires that you use [Google Chrome](http://google.com/chrome). 
-Here's an example of an exported presentation that's been uploaded to SlideShare: http://www.slideshare.net/hakimel/revealjs-13872948.
-
-1. Open your presentation with [css/print/pdf.css](https://github.com/hakimel/reveal.js/blob/master/css/print/pdf.css) included on the page. The default index HTML lets you add *print-pdf* anywhere in the query to include the stylesheet, for example: [lab.hakim.se/reveal-js?print-pdf](http://lab.hakim.se/reveal-js?print-pdf).
-2. Open the in-browser print dialog (CMD+P).
-3. Change the **Destination** setting to **Save as PDF**.
-4. Change the **Layout** to **Landscape**.
-5. Change the **Margins** to **None**.
-6. Click **Save**.
-
-![Chrome Print Settings](https://s3.amazonaws.com/hakim-static/reveal-js/pdf-print-settings.png)
-
-
-## Speaker Notes
-
-reveal.js comes with a speaker notes plugin which can be used to present per-slide notes in a separate browser window. The notes window also gives you a preview of the next upcoming slide so it may be helpful even if you haven't written any notes. Append ```?notes``` to presentation URL or press the 's' key on your keyboard to open the notes window.
-
-By default notes are written using standard HTML, see below, but you can add a ```data-markdown``` attribute to the ```<aside>``` to write them using Markdown.
-
-```html
-<section>
-	<h2>Some Slide</h2>
-
-	<aside class="notes">
-		Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-	</aside>
-</section>
-```
-
-## Server Side Speaker Nodes
-
-In some cases it can be desirable to run notes on a separate device from the one you're presenting on. The Node.js-based notes plugin lets you do this using the same note definitions as its client side counterpart. Include the requried scripts by adding the following dependencies:
-
-```javascript
-{ src: '/socket.io/socket.io.js', async: true },
-{ src: 'plugin/notes-server/client.js', async: true }
-```
-
-Then:
-
-1. Install [Node.js](http://nodejs.org/)
-2. Run ```npm install```
-3. Run ```node plugin/notes-server```
-
-
-## Theming
-
-The framework comes with a few different themes included:
-
-- default: Gray background, white text, blue links
-- beige: Beige background, dark text, brown links
-- sky: Blue background, thin white text, blue links
-- night: Black background, thick white text, orange links
-- serif: Cappuccino background, gray text, brown links
-- simple: White background, black text, blue links
-
-Each theme is available as a separate stylesheet. To change theme you will need to replace **default** below with your desired theme name in index.html:
-
-```html
-<link rel="stylesheet" href="css/theme/default.css" id="theme">
-```
-
-If you want to add a theme of your own see the instructions here: [/css/theme/README.md](https://github.com/hakimel/reveal.js/blob/master/css/theme/README.md).
-
-
-## Development Environment
-
-reveal.js is built using the task-based command line build tool [grunt.js](http://gruntjs.com) ([installation instructions](https://github.com/gruntjs/grunt#installing-grunt)). With Node.js and grunt.js installed, you need to start by running ```npm install``` in the reveal.js root. When the dependencies have been installed you should run ```grunt watch``` to start monitoring files for changes.
-
-If you want to customise reveal.js without running grunt.js you can alter the HTML to point to the uncompressed source files (css/reveal.css & js/reveal.js).
-
-### Folder Structure
-- **css/** Core styles without which the project does not function
-- **js/** Like above but for JavaScript
-- **plugin/** Components that have been developed as extensions to reveal.js
-- **lib/** All other third party assets (JavaScript, CSS, fonts)
-
-
-## License
-
-MIT licensed
-
-Copyright (C) 2013 Hakim El Hattab, http://hakim.se
-
+* What did you think worked well about the workshop format, content, and presentation?
+* What could be improved about the workshop?
+* (use a 1-10 radio button form) On a scale of 1-10, with 10 being very likely, how likely are you to recommend this workshop to a friend or colleague?
+* (use a 1-10 radio button form) On a scale of 1-10, with 10 being very likely, how likely are you to recommend that a friend or colleague use the Twilio APIs?
